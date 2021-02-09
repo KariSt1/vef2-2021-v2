@@ -1,0 +1,28 @@
+{
+  "name": "vef2-2021-v2",
+  "version": "1.0.0",
+  "description": "[Kynning í fyrirlestri](https://www.youtube.com/watch?v=1kRJBE040oY).",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KariSt1/vef2-2021-v2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KariSt1/vef2-2021-v2/issues"
+  },
+  "homepage": "https://github.com/KariSt1/vef2-2021-v2#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "xss": "^1.0.8"
+  }
+}
