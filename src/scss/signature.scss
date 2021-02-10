@@ -1,0 +1,19 @@
+@import './config';
+
+.signature {
+  &__grid {
+    @include grid();
+  }
+  
+  &__row {
+    @include row();
+  }
+  
+  &__col {
+    @include columns(12);
+  }
+
+  &__table {
+    width: 100%;
+  }
+}

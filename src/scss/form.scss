@@ -1,0 +1,121 @@
+@import './config';
+
+.form {
+  &__grid {
+    @include grid();
+  }
+  
+  &__row {
+    @include row();
+  }
+  
+  &__col {
+    @include columns(12);
+  }
+  
+  &__form {
+    display: table;
+    margin-top: 1rem;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__fieldset {
+    border: 0;
+  }
+
+  &__legend {
+    display: table-caption;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $gutter;
+  }
+
+  &__label {
+    flex: 0 1 ($gutter * 7);
+  }
+  
+  &__input {
+    padding: ($gutter * 0.25);
+    font-family: $font-main;
+    font-size: 1rem;
+    border: 1px solid #bfbf8f;
+    border-radius: 3px;
+    flex: 1;
+  }
+  
+  &__input--invalid {
+    background-color: #fbb;
+  }
+
+  &__checkboxfield {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: $gutter;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__checkbox {
+    transform: scale(1.5);
+    margin-right: 0.5rem;
+  }
+
+  &__errors {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__errortitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__erroritem {
+
+  }
+
+  &__error {
+
+  }
+  
+  &__submit {
+    display: flex;
+    justify-content: center;
+    margin-top: $gutter;
+  }
+
+  &__button {
+    border: 1px solid #bfbf8f;
+    border-radius: 6px;
+    background-color: #fff;
+    font-family: $font-main;
+    padding: 0.5rem 2rem;
+    font-size: 2rem;
+  }
+
+  &__seperator {
+    background-color: #ffe;
+    color: #ffe;
+    border-style: none;
+    border-top: 1px dotted #bfbf8f;
+    height: 1px;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    width: 100%;
+  }
+
+}

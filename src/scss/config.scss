@@ -1,0 +1,29 @@
+$max-width: 800px;
+
+$columns: 12;
+$gutter: 20px;
+
+$font-main: times-new-roman;
+
+@mixin grid() {
+  margin: 0 auto;
+  max-width: $max-width;
+  overflow: hidden;
+}
+
+@mixin row() {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: ($gutter / -2);
+  margin-right: ($gutter / -2);
+}
+
+@mixin columns($col: 1) {
+  padding-left: ($gutter / 2);
+  padding-right: ($gutter / 2);
+  width: ($col/$columns * 100 * 1%);
+}
+
+@mixin offset-left($cols: 0) {
+  margin-left: ($cols/$columns * 100 * 1%);
+}

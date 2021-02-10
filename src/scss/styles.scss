@@ -1,0 +1,28 @@
+@import 'config';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  overflow-x: hidden;
+  background-color: #FFFFEE;
+}
+
+body {
+  font-family: $font-main;
+}
+
+main {
+  padding-left: $gutter/2;
+  padding-right: $gutter/2;
+}
+
+img { /* stylelint-disable-line */
+  max-width: 100%;
+}
+
+@import 'form';
+@import 'signature';

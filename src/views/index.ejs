@@ -1,0 +1,76 @@
+<%- include('header') -%>
+
+<main>
+    <div class="form">
+        <div class="form__grid">
+            <div class="form__row">
+                <div class="form__col">
+                    <form class="form__form" method="post" action="/" enctype="application/x-www-form-urlencoded">
+                        <fieldset class="form__fieldset">
+                            <legend class="form__legend"><%= data.title %></legend>
+                            <div class="form__field">
+                                <label class="form__label" for="name">Nafn*</label>
+                                <input class="form__input<%= locals.isInvalid('name', data.errors) ? ' form__input--invalid' : '' %>" type="text" id="name" name="name" value="<%= data.name %>"><br>
+                            </div>
+                            <div class="form__field">
+                                <label class="form__label" for="nationalId">Kennitala*</label>
+                                <input class="form__input<%= locals.isInvalid('nationalId', data.errors) ? ' form__input--invalid' : '' %>" type="text" id="nationalId" name="nationalId" value="<%= data.nationalId %>" placeholder="000000-0000"><br>
+                            </div>
+                            <div class="form__field">
+                                <label class="form__label" for="comment">Athugasemd:</label>
+                                <textarea class="form__input<%= locals.isInvalid('comment', data.errors) ? ' form__input--invalid' : '' %>" type="text" id="comment" name="comment"><%= data.comment %></textarea><br>
+                            </div>
+                            <div class="form__checkboxfield">
+                                <input class="form__checkbox" type="checkbox" id="showname" name="showname" <%= (data.anonymous === true) ? 'checked' : '' %>><br>
+                                <label class="form__checkboxlabel" for="showname">Ekki birta nafn á lista</label>
+                            </div>
+                            <% if (data.errors) { %>
+                                <div class="form__errors">
+                                    <h3 class="form__errortitle"><%= data.errortitle %></h3>
+                                    <ul class="form__erroritem">
+                                        <% data.errors.forEach((error) => { %>
+                                            <li class="form__error"><%= error.msg %></li>
+                                        <% }) %>
+                                    </ul>
+                                </div>
+                            <% } %>
+                            <div class="form__submit">
+                                <input class="form__button" type="submit" value="Skrifa undir">
+                            </div>
+                        </fieldset>
+                    </form>
+                    <hr class="form__seperator">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="signature">
+        <div class="signature__grid">
+            <div class="signature__row">
+                <div class="signature__col">
+                    <h2 class="signature__header">Undirskriftir</h2>
+                    <% if (rows) { %>
+                        <table class="signature__table">
+                            <tr>
+                                <th class="signature__title">Dags</th>
+                                <th class="signature__title">Nafn</th>
+                                <th class="signature__title">Athugasemd</th>
+                            </tr>
+                            <% rows.forEach((signature) => { %>
+                                <tr class="signature__item">
+                                    <td class="signature__date"><%= signature.signed.toDateString() %></td>
+                                    <td class="signature__name">
+                                        <%= (signature.anonymous) ? 'Nafnlaust' : signature.name %>
+                                    </td>
+                                    <td class="signature__comment"><%= signature.comment %></td>
+                                </tr>
+                            <% }) %>
+                        </table>
+                    <% } else { %>
+                        <p class="signature__text">Engar undirskriftir.</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
