@@ -21,8 +21,8 @@
                                 <textarea class="form__input<%= locals.isInvalid('comment', data.errors) ? ' form__input--invalid' : '' %>" type="text" id="comment" name="comment"><%= data.comment %></textarea><br>
                             </div>
                             <div class="form__checkboxfield">
-                                <input class="form__checkbox" type="checkbox" id="showname" name="showname" <%= (data.anonymous === true) ? 'checked' : '' %>><br>
-                                <label class="form__checkboxlabel" for="showname">Ekki birta nafn á lista</label>
+                                <input class="form__checkbox" type="checkbox" id="anonymous" name="anonymous" <%= (data.anonymous === true) ? 'checked' : '' %>><br>
+                                <label class="form__checkboxlabel" for="anonymous">Ekki birta nafn á lista</label>
                             </div>
                             <% if (data.errors) { %>
                                 <div class="form__errors">
@@ -49,20 +49,20 @@
             <div class="signature__row">
                 <div class="signature__col">
                     <h2 class="signature__header">Undirskriftir</h2>
-                    <% if (rows) { %>
+                    <% if (rowCount !== 0) { %>
                         <table class="signature__table">
-                            <tr>
-                                <th class="signature__title">Dags</th>
-                                <th class="signature__title">Nafn</th>
-                                <th class="signature__title">Athugasemd</th>
+                            <tr class="signature__rowname">
+                                <th class="signature__date">Dags</th>
+                                <th class="signature__name">Nafn</th>
+                                <th class="signature__comment">Athugasemd</th>
                             </tr>
                             <% rows.forEach((signature) => { %>
                                 <tr class="signature__item">
-                                    <td class="signature__date"><%= signature.signed.toDateString() %></td>
-                                    <td class="signature__name">
+                                    <td class="signature__field"><%= parseDate(signature.signed) %></td>
+                                    <td class="signature__field">
                                         <%= (signature.anonymous) ? 'Nafnlaust' : signature.name %>
                                     </td>
-                                    <td class="signature__comment"><%= signature.comment %></td>
+                                    <td class="signature__field"><%= signature.comment %></td>
                                 </tr>
                             <% }) %>
                         </table>

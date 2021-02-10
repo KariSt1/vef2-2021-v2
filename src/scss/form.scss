@@ -81,14 +81,6 @@
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
-
-  &__erroritem {
-
-  }
-
-  &__error {
-
-  }
   
   &__submit {
     display: flex;
@@ -103,13 +95,17 @@
     font-family: $font-main;
     padding: 0.5rem 2rem;
     font-size: 2rem;
+  
+    &:hover {
+      background-color: #9ea354;
+    }
   }
 
   &__seperator {
     background-color: #ffe;
     color: #ffe;
     border-style: none;
-    border-top: 1px dotted #bfbf8f;
+    border-top: 2px dotted #bfbf8f;
     height: 1px;
     margin-bottom: 2em;
     margin-left: auto;

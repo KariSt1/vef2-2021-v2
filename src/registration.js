@@ -90,8 +90,9 @@ async function registrationGet(req, res) {
   };
   const result = await query('SELECT * from signatures;');
   const rows = result.rows;
+  const rowCount = result.rowCount;
 
-  res.render('index', { data, rows });
+  res.render('index', { data, rows, rowCount });
 }
 
 async function showErrors(req, res, next) {
@@ -123,8 +124,9 @@ async function showErrors(req, res, next) {
 
     const result = await query('SELECT * from signatures;');
     const rows = result.rows;
+    const rowCount = result.rowCount;
 
-    return res.render('index', { data, rows });
+    return res.render('index', { data, rows, rowCount });
   }
   return next();
 }

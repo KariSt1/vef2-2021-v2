@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { query } from './db.js';
 import { router as registrationRouter } from './registration.js';
 import { allowedNodeEnvironmentFlags } from 'process';
+import date from 'date-and-time';
 
 dotenv.config();
 
@@ -35,21 +36,15 @@ function isInvalid(field, errors) {
   return Boolean(errors.find(i => i.param === field));
 }
 
+function parseDate(d) {
+  return date.format(new Date(d), 'DD[.]MM[.]YYYY');
+}
+
 app.locals.isInvalid = isInvalid;
+app.locals.parseDate = parseDate;
 
 
 app.use('/', registrationRouter);
-// app.get('/', async (req, res) => {
-//   const title = 'Undirskriftarlisti';
-//   const result = await query('SELECT * from signatures;');
-//   console.log('result :>> ', result);
-
-//   res.render('index', { title });
-// });
-
-// app.post('/post', (req, res) => {
-//   res.send(`POST gögn: ${JSON.stringify(req.body)}`);
-// });
 
 // Verðum að setja bara *port* svo virki á heroku
 app.listen(port, () => {
