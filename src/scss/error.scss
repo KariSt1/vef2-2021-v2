@@ -1,0 +1,28 @@
+@import './config';
+
+.error {
+  &__grid {
+    @include grid();
+  }
+
+  &__row {
+    @include row();
+  }
+
+  &__col {
+    @include columns(12);
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__header {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 3rem;
+  }
+
+  &__text {
+    margin-bottom: 1rem;
+  }
+}

@@ -46,6 +46,18 @@ app.locals.parseDate = parseDate;
 
 app.use('/', registrationRouter);
 
+function notFoundHandler(req, res, next) { // eslint-disable-line
+  res.status(404).render('error', { title: 'Síða fannst ekki', error: '404 fannst ekki' });
+}
+
+function errorHandler(error, req, res, next) { // eslint-disable-line
+  console.error(error);
+  res.status(500).render('error', { title: 'Gat ekki skráð!', error: 'Hafðir þú skrifað undir áður?' });
+}
+
+app.use(notFoundHandler);
+app.use(errorHandler);
+
 // Verðum að setja bara *port* svo virki á heroku
 app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);

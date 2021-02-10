@@ -149,6 +149,7 @@ async function registrationPost(req, res) {
   };
 
   await insert(data);
+  console.log('EFTIR INSERT DATA');
   registrationGet(req, res);
 }
 

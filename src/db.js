@@ -28,6 +28,7 @@ export async function query(q, values = []) {
     return result;
   } catch(e) {
     console.log('Error selecting', e);
+    throw e;
   } finally {
     client.release();
   }
