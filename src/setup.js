@@ -12,14 +12,9 @@ const {
 const readFileAsync = util.promisify(fs.readFile);
 
 async function query(q) {
-  const pool = new pg.Pool({ connectionString });
+  const client = new pg.Client({ connectionString });
 
-  pool.on('error', (err) => {
-    console.error('Unexpected error on idle client', err);
-    process.exit(-1);
-  });
-
-  const client = await pool.connect();
+  await client.connect();
 
   try {
     const result = await client.query(q);
@@ -29,7 +24,7 @@ async function query(q) {
   } catch (err) {
     throw err;
   } finally {
-    await client.release();
+    await client.end();
   }
 }
 
