@@ -11,6 +11,8 @@
 
   &__col {
     @include columns(12);
+
+    margin-bottom: 2rem;
   }
 
   &__header {
