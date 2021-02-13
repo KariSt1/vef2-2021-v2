@@ -5,6 +5,7 @@ dotenv.config();
 
 const {
   DATABASE_URL: connectionString,
+  NODE_ENV: nodeEnv = 'development',
 } = process.env;
 
 if (!connectionString) {
@@ -12,28 +13,43 @@ if (!connectionString) {
   process.exit(1);
 }
 
+const ssl = nodeEnv !== 'development' ? { rejectUnauthorized: false } : false;
+
 // TODO gagnagrunnstengingar
-const pool = new pg.Pool({ connectionString });
+const pool = new pg.Pool({ connectionString, ssl });
 
 pool.on('error', (err) => {
   console.error('Unexpected error on idle client', err);
   process.exit(-1);
 });
 
+/**
+ * Framvkæmir SQL skipun á gagnagrunn sem keyrir á DATABASE_URL
+ * sem er skilgreint í .env
+ * @param {String} q Query til að keyra
+ * @param array} values Fylki af gildum fyrir query
+ * @returns {object} Hlut með niðurstöðu af því að keyra fyrirspurn
+ */
 export async function query(q, values = []) {
   const client = await pool.connect();
-  
+
   try {
     const result = await client.query(q, values);
     return result;
-  } catch(e) {
-    console.log('Error selecting', e);
+  } catch (e) {
+    console.error('Error selecting', e);
     throw e;
   } finally {
     client.release();
   }
 }
 
+/**
+ * Bætir við undirskrift
+ *
+ * @param {array} data Fylki af gögnum fyrir undirskrift
+ * @returns {object} Hlut með niðurstöðu af því að keyra fyrirspurn
+ */
 export async function insert(data) {
   const q = `
     INSERT INTO signatures
@@ -45,6 +61,11 @@ export async function insert(data) {
   return query(q, values);
 }
 
+/**
+ * Sækir allar undirskriftir
+ *
+ * @returns {array} Fylki af öllum undirskriftum
+ */
 export async function select() {
   const result = await query('SELECT * FROM signatures ORDER BY name');
 

@@ -1,16 +1,16 @@
 {
   "name": "vef2-2021-v2",
   "version": "1.0.0",
-  "description": "[Kynning í fyrirlestri](https://www.youtube.com/watch?v=1kRJBE040oY).",
-  "main": ".eslintrc.js",
+  "description": "Verkefni 2 í vefforritun 2",
+  "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint src/*.js app.js",
-    "stylelint": "stylelint ./src/scss/**/*.scss --syntax scss",
+    "eslint": "eslint src/*.js",
+    "stylelint": "stylelint ./src/scss/*.scss --syntax scss",
     "sass": "node-sass --source-map-embed ./src/scss/styles.scss ./public/styles.css",
     "sass-watch": "node-sass --source-map-embed --watch --recursive ./src/scss/styles.scss ./public/styles.css",
     "nodemon": "nodemon ./src/app.js",
     "dev": "concurrently npm:sass npm:sass-watch npm:nodemon",
+    "test": "concurrently npm:eslint npm:stylelint",
     "start": "node ./src/app.js",
     "setup": "node ./src/setup.js"
   },

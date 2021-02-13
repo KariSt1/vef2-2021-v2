@@ -4,22 +4,22 @@
   &__grid {
     @include grid();
   }
-  
+
   &__row {
     @include row();
   }
-  
+
   &__col {
     @include columns(12);
   }
-  
+
   &__form {
-    display: table;
-    margin-top: 3rem;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
     align-items: center;
+    display: table;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 100%;
   }
 
   &__fieldset {
@@ -28,10 +28,10 @@
 
   &__legend {
     display: table-caption;
+    font-size: 3rem;
+    font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
-    font-weight: 700;
-    font-size: 3rem;
   }
 
   &__field {
@@ -43,45 +43,45 @@
   &__label {
     flex: 0 1 ($gutter * 7);
   }
-  
+
   &__input {
-    padding: ($gutter * 0.25);
-    font-family: $font-main;
-    font-size: 1rem;
     border: 1px solid #bfbf8f;
     border-radius: 3px;
     flex: 1;
+    font-family: $font-main;
+    font-size: 1rem;
+    padding: ($gutter * 0.25);
   }
-  
+
   &__input--invalid {
     background-color: #fbb;
   }
 
   &__checkboxfield {
+    align-items: center;
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: $gutter;
     justify-content: center;
-    align-items: center;
+    margin-bottom: $gutter;
   }
 
   &__checkbox {
-    transform: scale(1.5);
     margin-right: 0.5rem;
+    transform: scale(1.5);
   }
 
   &__errors {
+    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
 
   &__errortitle {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
   }
-  
+
   &__submit {
     display: flex;
     justify-content: center;
@@ -89,23 +89,23 @@
   }
 
   &__button {
+    background-color: #fff;
     border: 1px solid #bfbf8f;
     border-radius: 6px;
-    background-color: #fff;
     font-family: $font-main;
-    padding: 0.5rem 2rem;
     font-size: 2rem;
-  
-    &:hover {
-      background-color: #9ea354;
-    }
+    padding: 0.5rem 2rem;
+  }
+
+  &__button:hover {
+    background-color: #9ea354;
   }
 
   &__seperator {
     background-color: #ffe;
-    color: #ffe;
     border-style: none;
     border-top: 2px dotted #bfbf8f;
+    color: #ffe;
     height: 1px;
     margin-bottom: 2em;
     margin-left: auto;
@@ -113,5 +113,4 @@
     margin-top: 2em;
     width: 100%;
   }
-
 }

@@ -4,37 +4,37 @@
   &__grid {
     @include grid();
   }
-  
+
   &__row {
     @include row();
   }
-  
+
   &__col {
     @include columns(12);
   }
 
   &__header {
-    text-align: center;
     font-size: 2rem;
     margin-bottom: 0.5em;
+    text-align: center;
   }
 
   &__table {
-    width: 100%;
     border: 1px solid #bfbf8f;
     border-collapse: collapse;
+    width: 100%;
   }
 
   &__date {
     border: 1px solid #bfbf8f;
-    width: 10%;
     padding: 0.5em;
+    width: 10%;
   }
 
   &__name {
     border: 1px solid #bfbf8f;
-    width: 20%;
     padding: 0.5em;
+    width: 20%;
   }
 
   &__comment {

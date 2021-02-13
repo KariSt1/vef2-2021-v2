@@ -2,10 +2,8 @@ import express from 'express';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import { query } from './db.js';
-import { router as registrationRouter } from './registration.js';
-import { allowedNodeEnvironmentFlags } from 'process';
 import date from 'date-and-time';
+import { router as registrationRouter } from './registration.js';
 
 dotenv.config();
 
@@ -14,7 +12,7 @@ const {
 } = process.env;
 
 let path = dirname(fileURLToPath(import.meta.url));
-path = path.substring(0, path.length -4);
+path = path.substring(0, path.length - 4);
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -33,9 +31,14 @@ app.use(express.static(join(path, './public')));
  * @returns {boolean} `true` ef `field` er í `errors`, `false` annars
  */
 function isInvalid(field, errors) {
-  return Boolean(errors.find(i => i.param === field));
+  return Boolean(errors.find((i) => i.param === field));
 }
 
+/**
+ * Hjálparfall til að breyta dagsetningu yfir á formið "DD.MM.YYYY"
+ * @param {String} Dagsetning sem á að formatta
+ * @returns {String} Formattaður strengur
+ */
 function parseDate(d) {
   return date.format(new Date(d), 'DD[.]MM[.]YYYY');
 }
@@ -43,13 +46,27 @@ function parseDate(d) {
 app.locals.isInvalid = isInvalid;
 app.locals.parseDate = parseDate;
 
-
 app.use('/', registrationRouter);
 
+/**
+ * Middleware sem sér um 404 villur.
+ *
+ * @param {object} req Request hlutur
+ * @param {object} res Response hlutur
+ * @param {function} next Næsta middleware
+ */
 function notFoundHandler(req, res, next) { // eslint-disable-line
   res.status(404).render('error', { title: 'Síða fannst ekki', error: '404 fannst ekki' });
 }
 
+/**
+ * Middleware sem sér um villumeðhöndlun.
+ *
+ * @param {object} err Villa sem kom upp
+ * @param {object} req Request hlutur
+ * @param {object} res Response hlutur
+ * @param {function} next Næsta middleware
+ */
 function errorHandler(error, req, res, next) { // eslint-disable-line
   console.error(error);
   res.status(500).render('error', { title: 'Gat ekki skráð!', error: 'Hafðir þú skrifað undir áður?' });
@@ -58,7 +75,6 @@ function errorHandler(error, req, res, next) { // eslint-disable-line
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// Verðum að setja bara *port* svo virki á heroku
 app.listen(port, () => {
   console.info(`Server running at http://localhost:${port}/`);
 });
